@@ -1,0 +1,28 @@
+<project name="Mango-Prettify" default="publish-to-test" basedir=".">
+
+	<property name="dir.dev" value="${basedir}" />
+	<property name="dir.test" value="/Users/adam/www/MangoDev/components/plugins/user/LogViewer/" />
+	
+	<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+	<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+	<target name="publish-to-test">
+		<copy todir="${dir.test}" verbose="true">
+			<fileset dir="${dir.dev}/Prettify">
+				<include name="Handler.cfc" />
+				<include name="plugin.xml" />
+				<include name="assets/prettify.css" />
+				<include name="assets/*.js" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="make-zip">
+		<delete file="${dir.dev}/Mango-Prettify.zip" />
+		<zip 
+			destfile="${dir.dev}/Mango-Prettify.zip"
+			basedir="${dir.dev}"
+			excludes="**/.DS_Store,build.xml,.git/**,.settings/**,.project,settings.xml,**/*.zip"
+		/>
+	</target>
+
+</project>
